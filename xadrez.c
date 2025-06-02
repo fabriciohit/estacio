@@ -1,6 +1,5 @@
 // xadrez.c
-// Simulação dos movimentos da Torre, Bispo e Rainha
-// Desafio de programação iniciante
+// Simulação dos movimentos das peças de xadrez: Torre, Bispo, Rainha e Cavalo
 
 #include <stdio.h>
 
@@ -37,6 +36,29 @@ int main() {
         printf("Esquerda\n");
         contadorRainha++;
     } while (contadorRainha <= 8);
+
+    // -------------------------
+    // Movimento do CAVALO
+    // -------------------------
+    // O cavalo vai fazer o movimento em L:
+    // 2 casas para baixo + 1 casa para a esquerda
+    // Usando loops aninhados (for e while)
+
+    printf("\nMovimento do Cavalo:\n");
+
+    // Primeiro FOR para controlar a quantidade de movimentos "L"
+    // Aqui simulamos só 1 movimento em L
+    for (int movimentoL = 1; movimentoL <= 1; movimentoL++) {
+        // Movimento para baixo (2 vezes)
+        int passosParaBaixo = 1;
+        while (passosParaBaixo <= 2) {
+            printf("Baixo\n");
+            passosParaBaixo++;
+        }
+
+        // Movimento para esquerda (1 vez)
+        printf("Esquerda\n");
+    }
 
     return 0;
 }
