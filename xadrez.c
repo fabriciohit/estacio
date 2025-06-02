@@ -1,64 +1,83 @@
 // xadrez.c
-// Simulação dos movimentos das peças de xadrez: Torre, Bispo, Rainha e Cavalo
+// Simulação dos movimentos das peças de xadrez
+// Nível Mestre - Recursividade e Loops Aninhados Complexos
 
 #include <stdio.h>
 
-int main() {
-    // -------------------------
-    // Movimento da TORRE
-    // -------------------------
-    // A torre vai andar 5 casas para a direita usando o laço FOR
-    int i;
-    printf("Movimento da Torre:\n");
-    for (i = 1; i <= 5; i++) {
-        printf("Direita\n");
-    }
+// Função recursiva para mover a Torre para a direita
+void moverTorre(int passos) {
+    if (passos == 0) return;
+    printf("Direita\n");
+    moverTorre(passos - 1);
+}
 
-    // -------------------------
-    // Movimento do BISPO
-    // -------------------------
-    // O bispo vai andar 5 casas na diagonal para cima e para a direita
-    // usando o laço WHILE
-    int contadorBispo = 1;
-    printf("\nMovimento do Bispo:\n");
-    while (contadorBispo <= 5) {
-        printf("Cima Direita\n");
-        contadorBispo++;
-    }
+// Função recursiva para mover a Rainha para a esquerda
+void moverRainha(int passos) {
+    if (passos == 0) return;
+    printf("Esquerda\n");
+    moverRainha(passos - 1);
+}
 
-    // -------------------------
-    // Movimento da RAINHA
-    // -------------------------
-    // A rainha vai andar 8 casas para a esquerda usando o laço DO-WHILE
-    int contadorRainha = 1;
-    printf("\nMovimento da Rainha:\n");
-    do {
-        printf("Esquerda\n");
-        contadorRainha++;
-    } while (contadorRainha <= 8);
+// Função recursiva para movimentar o Bispo
+void moverBispoRecursivo(int passos) {
+    if (passos == 0) return;
+    printf("Cima Direita\n");
+    moverBispoRecursivo(passos - 1);
+}
 
-    // -------------------------
-    // Movimento do CAVALO
-    // -------------------------
-    // O cavalo vai fazer o movimento em L:
-    // 2 casas para baixo + 1 casa para a esquerda
-    // Usando loops aninhados (for e while)
-
+// Movimento do Cavalo com loops complexos
+void moverCavalo() {
     printf("\nMovimento do Cavalo:\n");
 
-    // Primeiro FOR para controlar a quantidade de movimentos "L"
-    // Aqui simulamos só 1 movimento em L
-    for (int movimentoL = 1; movimentoL <= 1; movimentoL++) {
-        // Movimento para baixo (2 vezes)
-        int passosParaBaixo = 1;
-        while (passosParaBaixo <= 2) {
-            printf("Baixo\n");
-            passosParaBaixo++;
+    // O cavalo se move em "L": 2 para cima, 1 para direita
+    int movimentosFeitos = 0;
+    for (int i = 0; i < 3; i++) { // loop externo para simular múltiplas tentativas
+        for (int j = 0; j < 3; j++) { // loop interno
+            if (i == 0 && j == 1) {
+                // Simula o movimento correto: 2 cima, 1 direita
+                printf("Cima\n");
+                printf("Cima\n");
+                printf("Direita\n");
+                movimentosFeitos++;
+                break; // sai do loop interno após um movimento completo
+            }
+            // Se não for a condição certa, ignora com continue
+            continue;
         }
 
-        // Movimento para esquerda (1 vez)
-        printf("Esquerda\n");
+        if (movimentosFeitos > 0) {
+            break; // se já fez um movimento, não precisa continuar
+        }
     }
-
-    return 0;
 }
+
+// Movimento do Bispo com loops aninhados (além da recursão)
+void moverBispoComLoops(int casas) {
+    printf("\nMovimento do Bispo (usando loops aninhados):\n");
+    for (int linha = 1; linha <= casas; linha++) {
+        for (int coluna = 1; coluna <= 1; coluna++) {
+            printf("Cima Direita\n");
+        }
+    }
+}
+
+int main() {
+    // Quantidade de passos de cada peça
+    int passosTorre = 5;
+    int passosBispo = 5;
+    int passosRainha = 8;
+
+    // -------------------------------
+    // Movimento da Torre (recursivo)
+    // -------------------------------
+    printf("Movimento da Torre:\n");
+    moverTorre(passosTorre);
+
+    // -------------------------------
+    // Movimento do Bispo (recursivo)
+    // -------------------------------
+    printf("\nMovimento do Bispo:\n");
+    moverBispoRecursivo(passosBispo);
+
+    // -------------------------------
+    // Movimento da
